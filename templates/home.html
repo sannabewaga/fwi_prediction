@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction | Enter Data</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .navbar {
+            background-color: #0056b3; /* Darker Blue */
+            padding: 15px;
+        }
+        .navbar-brand {
+            color: white !important;
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0056b3;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-primary {
+            background-color: #0056b3;
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            margin-top: 15px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #004299;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0056b3;
+            color: white;
+            font-size: 0.9em;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">FWI Prediction System</a>
+        </div>
+    </nav>
+
+    <!-- Input Form -->
+    <div class="container">
+        <h2>Enter Fire Weather Data</h2>
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Temperature (°C)</label>
+                <input type="text" name="Temperature" class="form-control" placeholder="Enter temperature" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Relative Humidity (%)</label>
+                <input type="text" name="RH" class="form-control" placeholder="Enter RH" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Wind Speed (km/h)</label>
+                <input type="text" name="Ws" class="form-control" placeholder="Enter wind speed" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Rain (mm)</label>
+                <input type="text" name="Rain" class="form-control" placeholder="Enter rain amount" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fine Fuel Moisture Code (FFMC)</label>
+                <input type="text" name="FFMC" class="form-control" placeholder="Enter FFMC" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Duff Moisture Code (DMC)</label>
+                <input type="text" name="DMC" class="form-control" placeholder="Enter DMC" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Drought Code (DC)</label>
+                <input type="text" name="DC" class="form-control" placeholder="Enter DC" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Initial Spread Index (ISI)</label>
+                <input type="text" name="ISI" class="form-control" placeholder="Enter ISI" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Build Up Index (BUI)</label>
+                <input type="text" name="BUI" class="form-control" placeholder="Enter BUI" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Predict Fire Risk</button>
+        </form>
+
+        {% if result %}
+        <h3 class="mt-4 text-center">Predicted FWI: <strong>{{ result }}</strong></h3>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025 FWI Prediction | Powered by AI & Data Science</p>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
